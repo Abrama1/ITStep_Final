@@ -1,0 +1,23 @@
+{% extends "game/base.html" %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-center align-items-center" style="height: 80vh;">
+    <div class="profile-container">
+        <h3 class="card-title text-center mb-4" style="color: #ecf0f1;">Profile</h3>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Username: {{ username }}</li>
+            <li class="list-group-item">Date Joined: {{ date_joined|date:"d M Y" }}</li>
+            <li class="list-group-item">Best Score: {{ best_score }}</li>
+            {% if achievements %}
+            <li class="list-group-item">Achievements:
+                <ul>
+                    {% for achievement in achievements %}
+                    <li>{{ achievement.title }}</li>
+                    {% endfor %}
+                </ul>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

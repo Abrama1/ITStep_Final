@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Snake Game{% endblock %}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #343434;
+            color: #ecf0f1;
+        }
+        .navbar {
+            background-color: #90B494;
+        }
+        .navbar-brand, .nav-link {
+            color: #343434 !important;
+        }
+        .navbar-nav {
+            width: 100%;
+            justify-content: space-between;
+        }
+        .navbar-nav .centered {
+            flex-grow: 1;
+            text-align: center;
+        }
+        .container {
+            margin-top: 20px;
+        }
+        .game-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .score-board {
+            margin-bottom: 10px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .history-container, .profile-container {
+            background-color: #343434;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .btn-primary, .btn-secondary {
+            background-color: #FFA836;
+            border: none;
+        }
+        .list-group-item {
+            background-color: #343434;
+            color: #ecf0f1;
+            border: 1px dotted #505050;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .list-group-item span {
+            margin-right: 15px;
+        }
+        .leaderboard-container {
+            background-color: #343434;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .rank-1 {
+            color: #FFD700; /* Gold */
+        }
+        .rank-2 {
+            color: #C0C0C0; /* Silver */
+        }
+        .rank-3 {
+            color: #a97142; /* Bronze */
+        }
+        .alert-danger {
+            color: #ff0000;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="{% url 'game' %}">Snake Game</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav w-100 d-flex justify-content-between align-items-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'game' %}">Play</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'leaderboard' %}">Leaderboard</a>
+                </li>
+                <div class="ml-auto d-flex">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'history' %}">History</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{ user.username }}
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                            <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                        </div>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'register' %}">Register</a>
+                    </li>
+                    {% endif %}
+                </div>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

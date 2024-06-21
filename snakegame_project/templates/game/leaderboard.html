@@ -1,0 +1,51 @@
+{% extends "game/base.html" %}
+{% block title %}Leaderboard{% endblock %}
+{% block content %}
+<h2 class="text-center mb-4">Leaderboard</h2>
+<div class="d-flex justify-content-center">
+    <div class="row w-100">
+        <div class="col-md-4">
+            <div class="leaderboard-container p-4">
+                <h3 class="text-center">Daily Top 10</h3>
+                <ul class="list-group mb-4">
+                    {% for score in daily_scores %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center rank-{{ forloop.counter }}">
+                            <span>{{ forloop.counter }}.</span>
+                            <span>{{ score.user.username }}</span>
+                            <span class="ml-3">{{ score.score }}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="leaderboard-container p-4">
+                <h3 class="text-center">Weekly Top 10</h3>
+                <ul class="list-group mb-4">
+                    {% for score in weekly_scores %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center rank-{{ forloop.counter }}">
+                            <span>{{ forloop.counter }}.</span>
+                            <span>{{ score.user.username }}</span>
+                            <span class="ml-3">{{ score.score }}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="leaderboard-container p-4">
+                <h3 class="text-center">All-Time Top 10</h3>
+                <ul class="list-group">
+                    {% for score in all_time_scores %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center rank-{{ forloop.counter }}">
+                            <span>{{ forloop.counter }}.</span>
+                            <span>{{ score.user.username }}</span>
+                            <span class="ml-3">{{ score.score }}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

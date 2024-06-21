@@ -1,0 +1,87 @@
+{% extends "game/base.html" %}
+{% block title %}Register{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-center align-items-center" style="height: 80vh;">
+    <div class="card p-4" style="width: 100%; max-width: 400px; background-color: #343434; border: none;">
+        <h3 class="card-title text-center mb-4" style="color: #ecf0f1;">Register</h3>
+        <form method="post" id="registerForm">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username" style="color: #ecf0f1;">Username</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+                {% if form.username.errors %}
+                    <div class="alert alert-danger">
+                        {% for error in form.username.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="email" style="color: #ecf0f1;">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+                {% if form.email.errors %}
+                    <div class="alert alert-danger">
+                        {% for error in form.email.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="password1" style="color: #ecf0f1;">Password</label>
+                <input type="password" class="form-control" id="password1" name="password1" required>
+                <small id="passwordHelp" class="form-text" style="color: #ecf0f1;">
+                    Password must be at least 8 characters long, contain letters and numbers.
+                </small>
+                {% if form.password1.errors %}
+                    <div class="alert alert-danger">
+                        {% for error in form.password1.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="password2" style="color: #ecf0f1;">Confirm Password</label>
+                <input type="password" class="form-control" id="password2" name="password2" required>
+                {% if form.password2.errors %}
+                    <div class="alert alert-danger">
+                        {% for error in form.password2.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Register</button>
+            <p class="mt-3 text-center" style="color: #ecf0f1;">Already have an account? <a href="{% url 'login' %}" style="color: #1abc9c;">Login</a></p>
+        </form>
+    </div>
+</div>
+
+<script>
+document.getElementById('password1').addEventListener('input', function() {
+    var password = document.getElementById('password1').value;
+    var passwordHelp = document.getElementById('passwordHelp');
+    var requirements = [];
+
+    if (password.length < 8) {
+        requirements.push('at least 8 characters long');
+    }
+    if (!/\d/.test(password)) {
+        requirements.push('at least one number');
+    }
+    if (!/[a-zA-Z]/.test(password)) {
+        requirements.push('at least one letter');
+    }
+
+    if (requirements.length > 0) {
+        passwordHelp.textContent = 'Password must be ' + requirements.join(', ') + '.';
+        passwordHelp.style.color = 'red';
+    } else {
+        passwordHelp.textContent = 'Password looks good.';
+        passwordHelp.style.color = 'green';
+    }
+});
+</script>
+{% endblock %}
