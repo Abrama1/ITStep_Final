@@ -1,0 +1,73 @@
+body {
+    background-color: #343434;
+    color: #ecf0f1;
+}
+.navbar {
+    background-color: #90B494;
+}
+.navbar-brand, .nav-link {
+    color: #343434 !important;
+}
+.navbar-nav {
+    width: 100%;
+    justify-content: space-between;
+}
+.navbar-nav .centered {
+    flex-grow: 1;
+    text-align: center;
+}
+.container {
+    margin-top: 20px;
+}
+.game-container {
+    text-align: center;
+    margin: 20px 0;
+}
+.score-board {
+    margin-bottom: 10px;
+    font-size: 24px;
+    font-weight: bold;
+}
+.history-container, .profile-container {
+    background-color: #343434;
+    color: #ecf0f1;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+.btn-primary, .btn-secondary {
+    background-color: #FFA836;
+    border: none;
+}
+.list-group-item {
+    background-color: #343434;
+    color: #ecf0f1;
+    border: 1px dotted #505050;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.list-group-item span {
+    margin-right: 15px;
+}
+.leaderboard-container {
+    background-color: #343434;
+    padding: 10px;
+    border-radius: 10px;
+}
+.rank-1 {
+    color: #FFD700; /* Gold */
+}
+.rank-2 {
+    color: #C0C0C0; /* Silver */
+}
+.rank-3 {
+    color: #a97142; /* Bronze */
+}
+.alert-danger {
+    color: #ff0000;
+}
